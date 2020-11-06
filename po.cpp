@@ -19,8 +19,8 @@ class PO{
 		ProgramCounter programCounter;
 		Ula ula;
 		Regs regs;
-		multiplex m1;
-		multiplex m2;
+		Multiplex m1;
+		Multiplex m2;
 		Add add;
 	public:	
 		PO(InstMem _instMem, DataMem _dataMem, Pc _pc, ProgramCounter _programCounter, Ula _ula,
@@ -37,18 +37,21 @@ class PO{
 		}
 
 		void executar(){
-			unsigned x, y, z;
-			while(true){
-				pc.getInstruction(instMem.rm(programCounter.get(), pc.readInstMem()));
+			int x, y, z, k, j, w;
+			//while(true){
+			for(int i=0; i<1; i++){
+				pc.getInstruction(instMem.rm(programCounter.get(), pc.instMemRead()));
 				x = regs.lr(pc.getOpFont1(), pc.brRead());
-				y = m2.getMult(regs.rr(pc.getOpFont2(), pc.brLead()), pc.getConst(), pc.m2Sel());				
+				y = regs.lr(pc.getOpFont2(), pc.brRead());				
 				z = ula.op(pc.ulaOp(), x, y);
-				dataMem.wr(pc.getOpFont1(), pc.dataWrite());
-				k = dataMem.rr(pc.getOpFont1(), pc.dataRead());
-				regs.sr(pc.getOpFont1(), k, pc.storeReg());
+				dataMem.wr(z, pc.getDataDest(), pc.dataWrite());
+				k = dataMem.rr(pc.getDataAddress(), pc.dataRead());
+				w = m2.getMult(k, z, pc.m2Sel());
+				regs.sr(w, pc.getDest(), pc.brWrite());
 				j = add.operar(programCounter.get(), 1);
-				programCounter.set(m1.getMult(j, z, pc.m1Sel()), pc.pcWrite());
-
+				programCounter.set(m1.getMult(z, j, pc.m1Sel()), pc.pcWrite());
 			}
 		}	
-}
+};
+
+#endif

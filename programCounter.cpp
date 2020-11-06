@@ -18,4 +18,6 @@ class ProgramCounter{
 		int get(){
 			return programCounter;
 		}
-}
+};
+
+#endif

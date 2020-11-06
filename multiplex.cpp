@@ -3,13 +3,13 @@
 
 #include <iostream>
 
-class multiplex
+class Multiplex
 {
 public:
-	multiplex();
-	~multiplex();
+	Multiplex();
+	~Multiplex();
 	
-	unsigned getMult(unsigned A, unsigned B, bool seletor){
+	int getMult(int A, int B, bool seletor){
 		if(seletor){
 			return A;
 		}else{
@@ -17,3 +17,5 @@ public:
 		}
 	}
 };
+
+#endif

@@ -5,14 +5,14 @@
 
 class InstMem{
 	private:
-	unsigned memoria[256];
+	int memoria[256];
 	public:
-	unsigned rm(int end, bool readInstMem){ // read memory
+	int rm(int end, bool readInstMem){ // read memory
 		if(readInstMem)
 			return memoria[end];
 	}
 
-	void wm(int end, unsigned int instrucao, bool writeInstMem){ //write memory
+	void wm(int end, int instrucao, bool writeInstMem){ //write memory
 		if(writeInstMem)
 			memoria[end] = instrucao;
 	}

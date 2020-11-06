@@ -9,7 +9,9 @@ class Add{
 		Add();
 		~Add();
 
-		unsigned operar(unsigned a, unsigned b){
+		int operar(int a, int b){
 			return a + b;
 		}
-}
+};
+
+#endif

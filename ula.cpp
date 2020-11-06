@@ -5,48 +5,36 @@
 
 class ULA {
 	private:
-	unsigned a, b;
-	
 
 	public:
-	void readA(double _a) {
-		a = _a;
-	}
-	void readB(double _b) {
-		b = _b;
-	}
-	double writeResult() {
-		return(s);
-	}
-	bool RN(){
-		return N;
-	} 
-	bool RZ(){
-		return Z;
-	}
 	
-	void op(int op) { 
+	int op(int op, int a, int b) { 
+		int s;
 		switch(op){
 			case 1:	s = a + b;
 				break;
-			case 2: s = (int)a & (int)b; //op and
+			case 2: s = a - b;
 				break;
-			case 3: s = (int)a | (int)b;//op or
+			case 3: s = a * b;
 				break;
-			case 4: s = !a; //op not
+			case 4: s = a / b;
 				break;
-
+			case 5: s = (int)a & (int)b; //op and
+				break;
+			case 6: s = (int)a | (int)b;//op or
+				break;
+			case 7: s = !a; //op not
+				break;
+			case 8: s = a << 2;
+				break;
+			case 9: if(a - b == 0)
+						return 1;
+					else
+						return 0;
+					break;
 		}
-		if(a < b){ // setando o flag N
-			N = true;
-		}else{
-			N = false;
-		}
-		if(a==b) { // setando o flag Z
-			Z = true;
-		}else{
-			Z = false;
-		}
+		return s;
+		
 	}
 };
 

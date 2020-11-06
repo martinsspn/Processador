@@ -10,10 +10,24 @@ class PC{
 	private:
 		string palavra_de_instrucao;
 		string opCode;
-
+		int opFont1;
+		int opFont2;
+		int dest;
+		int dataDest;
+		int dataAddress;
 
 	public:
-		void decodificar(){
+		PC(){
+			palavra_de_instrucao = "";
+			opCode = "ADD";
+			opFont1 = 1;
+			opFont2 = 2;
+			dest = 1;
+			dataDest = 0;
+			dataAddress = 0;
+		}
+
+		/*void decodificar(){
 			vector<string> x;
 			string y ="";
 			for(auto n = palavra_de_instrucao.begin(), n < palavra_de_instrucao.end(), ++n){
@@ -25,6 +39,7 @@ class PC{
 			opCode = x[0];
 		
 		}
+		*/
 
 		void getInstruction(string _instrucao){
 			palavra_de_instrucao = _instrucao;
@@ -37,59 +52,86 @@ class PC{
 				return false;
 		}
 
-		bool instMemWrite(){
-			if (opCode = "SW")
-				return true;
-			else
-				return false;	
-		}
 
 		bool instMemRead(){
-			if (opCode == "LW")
+			if (true)
+				return true;
+			else
+				return false;
+		}
+
+		bool dataRead(){
+			if(opCode == "STORE")
+				return true;
+			else
+				return false;
+		}
+
+		bool dataWrite(){
+			if(opCode == "LOAD")
+				return true;
+			else
+				return false;
+		}
+
+		bool brRead(){
+			if (opCode == "ADD" || opCode == "SUB" || opCode == "MULT" || opCode == "DIV" || opCode == "AND" || opCode == "OR" || opCode == "NOT" || opCode == "SHIFT" || opCode == "LOAD")
 				return true;
 			else
 				return false;
 		}
 
 		bool brWrite(){
-			if (opCode == ?)
+			if (opCode == "ADD" || opCode == "SUB" || opCode == "MULT" || opCode == "DIV" || opCode == "AND" || opCode == "OR" || opCode == "NOT" || opCode == "SHIFT" || opCode == "STORE")
 				return true;
 			else
 				return false;
 		}
 
 		bool m1Sel(){
-			if (opCode == ?)
+			if (opCode == "JUMP" || opCode == "BEQ")
 				return true;
 			else
 				return false;
 		}
 
 		bool m2Sel(){
-			if (opCode == ?)
+			if (opCode == "STORE")
 				return true;
 			else
 				return false;
 		}
 
-		unsigned opUla(){
-			if (opCode == ?)
-				return something;
-			else
-				return something;
+		int opUla(){
+			switch(opCode){
+				case "ADD": return 1; break;
+				case "SUB": return 2; break;
+				case "MULT": return 3; break;
+				case "DIV": return 4; break;
+				case "AND": return 5; break;
+				case "OR": return 6; break;
+				case "NOT": return 7; break;
+				case "SHIFT": return 8; break;
+				case "LOAD": return 1; break;
+				case "BEQ": return 9; break;
+				case "JUMP": return 1; break;
+			}
 		}
 
-		bool dataMemRead(){
-			if (opCode == ?)
-				return true;
-			else
-				return false;
+		int getOpFont1(){
+			return opFont1;
 		}
 
-		bool dataMemWrite(){
-			if (opCode == ?)
-				return true;
-			else
-				return false;
+		int getOpFont2(){
+			return opFont2;
 		}
+
+		int getDataDest(){
+			return dataDest;
+		}
+
+		int getDataAddress(){
+			return dataAddress;
+		}
+};
 #endif
