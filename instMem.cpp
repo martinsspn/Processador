@@ -5,14 +5,14 @@
 
 class InstMem{
 	private:
-	int memoria[256];
+	std::string memoria[256];
 	public:
-	int rm(int end, bool readInstMem){ // read memory
+	std::string rm(int end, bool readInstMem){ // read memory
 		if(readInstMem)
 			return memoria[end];
 	}
 
-	void wm(int end, int instrucao, bool writeInstMem){ //write memory
+	void wm(int end, std::string instrucao, bool writeInstMem){ //write memory
 		if(writeInstMem)
 			memoria[end] = instrucao;
 	}

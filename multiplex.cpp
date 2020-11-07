@@ -6,8 +6,6 @@
 class Multiplex
 {
 public:
-	Multiplex();
-	~Multiplex();
 	
 	int getMult(int A, int B, bool seletor){
 		if(seletor){

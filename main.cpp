@@ -11,17 +11,18 @@
 
 using namespace std;
 int main(){
-	InstMem instMem = new InstMem();
-	DataMem dataMem = new DataMem();
-	Pc pc = new Pc();
-	ProgramCounter programCounter = new ProgramCounter();
-	Ula ula = new Ula();
-	Regs regs = new Regs();
-	Multiplex m1 = new Multiplex();
-	Multiplex m2 = new Multiplex();
-	Add add = new Add();
-	Po po = new Po(instMem, dataMem, pc, programCounter, ula, regs, m1, m2, add);
-	cout << regs.registradores[1];
-	po.executar();
-	cout << regs.registradores[1];
+	InstMem *instMem = new InstMem();
+	DataMem *dataMem = new DataMem();
+	ProgramCounter *programCounter = new ProgramCounter();
+	Ula *ula = new Ula();
+	Regs *regs = new Regs();
+	Multiplex *m1 = new Multiplex();
+	Multiplex *m2 = new Multiplex();
+	Add *add = new Add();
+	Pc *pc =  new Pc(programCounter);
+	Po *po = new Po(instMem, dataMem, pc, programCounter, ula, regs, m1, m2, add);
+	cout << programCounter->get() << endl;
+	po->executar();
+	cout << programCounter->get() << endl;
+	
 }

@@ -14,14 +14,18 @@ public:
 		registradores[1] = 10;
 		registradores[2] = 5;
 	}
-	int lr(int adress, bool loadReg) { //Read Register
-		if(loadReg)
-			return registradores[adress];
+	int lr(int address, bool loadReg) { //Read Register
+		if(loadReg){
+			std::cout << "LOADED DATA: " << registradores[address] << " FROM ADDRESS: " << address << std::endl;
+			return registradores[address];
+		}
 	}
 
-	void sr(int adress, int dado, bool storeReg) { // escreve o valor no registrador selecionado
-		if(storeReg)
-			registradores[adress] = dado;
+	void sr(int address, int dado, bool storeReg) { // escreve o valor no registrador selecionado
+		if(storeReg){
+			std::cout << "STORED DATA: " << dado  << " IN ADDRESS: " << address << std::endl;
+			registradores[address] = dado;
+		}
 	}
 
 };
