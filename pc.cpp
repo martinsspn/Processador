@@ -22,10 +22,10 @@ class Pc{
 		Pc(ProgramCounter * _programCounter){
 			programCounter = _programCounter;
 			palavra_de_instrucao = "";
-			opCode = "JUMP";
+			opCode = "BEQ";
 			opFont1 = 1;
-			opFont2 = 2;
-			dest = 12;
+			opFont2 = 1;
+			dest = 10;
 			dataDest = 15;
 			dataAddress = 15;
 		}
@@ -88,7 +88,7 @@ class Pc{
 		}
 
 		bool brRead(){
-			if (opCode == "ADD" || opCode == "SUB" || opCode == "MULT" || opCode == "DIV" || opCode == "AND" || opCode == "OR" || opCode == "NOT" || opCode == "SHIFT" || opCode == "LOAD"){
+			if (opCode == "ADD" || opCode == "SUB" || opCode == "MULT" || opCode == "DIV" || opCode == "AND" || opCode == "OR" || opCode == "NOT" || opCode == "SHIFT" || opCode == "LOAD", opCode == "BEQ"){
 				cout << "brRead" << endl;
 				return true;
 			}
@@ -127,6 +127,22 @@ class Pc{
 			}
 		}
 
+		bool m3Sel(){
+			cout << "m3Sel" << endl;
+			if (opCode == "JUMP"){
+				return true;
+			}else{
+				return false;
+			}
+		}
+
+		bool m4Sel(int z){
+			if(opCode == "BEQ" && z == 1)
+				return true;
+			else
+				return false;
+		}
+
 		int ulaOp(){
 			cout << "opUla: ";
 			if(opCode == "ADD" || opCode == "LOAD" || opCode == "JUMP"){cout << "ADD/LOAD/JUMP" << endl; return 1; }
@@ -153,8 +169,6 @@ class Pc{
 			cout << "getOpFont2" << endl;
 			if(opCode == "LOAD")
 				return 0;
-			else if(opCode == "JUMP")
-				return dest;
 			else
 				return opFont2;
 		}

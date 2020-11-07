@@ -13,6 +13,7 @@ class ProgramCounter{
 		
 		void set(int _programCounter, bool pcWrite){
 			if(pcWrite)
+				std::cout << "Novo valor do programCounter: " << _programCounter << std::endl;
 				programCounter = _programCounter;
 		}
 		int get(){

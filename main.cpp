@@ -18,11 +18,13 @@ int main(){
 	Regs *regs = new Regs();
 	Multiplex *m1 = new Multiplex();
 	Multiplex *m2 = new Multiplex();
+	Multiplex *m3 = new Multiplex();
+	Multiplex *m4 = new Multiplex();
 	Add *add = new Add();
 	Pc *pc =  new Pc(programCounter);
-	Po *po = new Po(instMem, dataMem, pc, programCounter, ula, regs, m1, m2, add);
-	cout << programCounter->get() << endl;
+	Po *po = new Po(instMem, dataMem, pc, programCounter, ula, regs, m1, m2, m3, m4, add);
+	cout << regs->registradores[1] << endl;
 	po->executar();
-	cout << programCounter->get() << endl;
+	cout << regs->registradores[1] << endl;
 	
 }
