@@ -2,6 +2,8 @@
 #define _PC_
 
 #include <iostream>
+#include <sstream>
+#include <fstream>
 #include <vector>
 #include "programCounter.cpp"
 
@@ -30,19 +32,42 @@ class Pc{
 			dataAddress = 15;
 		}
 
-		/*void decodificar(){
-			vector<string> x;
-			string y ="";
-			for(auto n = palavra_de_instrucao.begin(), n < palavra_de_instrucao.end(), ++n){
-				if(palavra_de_instrucao[n] != " " or palavra_de_instrucao[n] != ";")
-					y += palavra_de_instrucao[n];
-				else
-					x.push_back(y);
+		void decodificar(string command){
+			stringstream operations(command);
+			string aux1;
+			vector<string> aux2;
+			while(!operations.eof()){
+				operations >> aux1;
+				aux2.push_back(aux1);
 			}
-			opCode = x[0];
-		
+			if(aux2.size() == 4){
+				try{
+					this->opCode = aux2[0];
+					this->opFont1 = stoi(aux2[1]);
+					this->opFont2 = stoi(aux2[2]);
+					this->dest = stoi(aux2[3]);
+				}catch(exception& e){
+					cout << "There's something wrong with the instruction";
+				}	
+			}else if(aux2.size() == 3){
+				try{
+					this->opCode = aux2[0];
+					this->opFont1 = stoi(aux2[1]);
+					this->dest = stoi(aux2[2]);
+				}catch(exception& e){
+					cout << "There's something wrong with the instruction";
+				}
+			}else if(aux2.size() == 2){
+				try{
+					this->opCode = aux2[0];
+					this->dest = stoi(aux2[1]);
+				}catch(exception& e){
+					cout << "There's something wrong with the instruction" << endl;
+				}
+			}else{
+				cout << "Invalid Operation" << endl;
+			}
 		}
-		*/
 
 		void getInstruction(string _instrucao){
 			palavra_de_instrucao = _instrucao;
@@ -88,7 +113,7 @@ class Pc{
 		}
 
 		bool brRead(){
-			if (opCode == "ADD" || opCode == "SUB" || opCode == "MULT" || opCode == "DIV" || opCode == "AND" || opCode == "OR" || opCode == "NOT" || opCode == "SHIFT" || opCode == "LOAD", opCode == "BEQ"){
+			if (opCode == "ADD" || opCode == "SUB" || opCode == "MULT" || opCode == "DIV" || opCode == "AND" || opCode == "OR" || opCode == "NOT" || opCode == "SHIFT" || opCode == "LOAD" || opCode == "BEQ"){
 				cout << "brRead" << endl;
 				return true;
 			}
