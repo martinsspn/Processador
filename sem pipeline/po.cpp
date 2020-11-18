@@ -43,9 +43,12 @@ class Po{
 
 		void executar(){
 			int x, y, z, k, j, w, h;
-			//while(true){
-			for(int i=0; i<1; i++){
+			while(true){
+			//for(int i=0;i<=1;i++){
 				pc->getInstruction(instMem->rm(programCounter->get(), pc->instMemRead()));
+				pc->decodificar();
+				if(pc->getOpCode() == "EOF")
+					break;
 				x = regs->lr(pc->getOpFont1(), pc->brRead());
 				y = m3->getMult(pc->getDest(), regs->lr(pc->getOpFont2(), pc->brRead()), pc->m3Sel());				
 				z = ula->op(pc->ulaOp(), x, y);
@@ -56,7 +59,6 @@ class Po{
 				regs->sr(pc->getDest(), w,pc->brWrite());
 				j = add->operar(programCounter->get(), 1);
 				programCounter->set(m1->getMult(h, j, pc->m1Sel()), pc->pcWrite());
-				
 			}
 		}	
 };

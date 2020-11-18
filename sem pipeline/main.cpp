@@ -23,5 +23,8 @@ int main(){
 	Add *add = new Add();
 	Pc *pc =  new Pc(programCounter);
 	Po *po = new Po(instMem, dataMem, pc, programCounter, ula, regs, m1, m2, m3, m4, add);
+	cout << regs->registradores[1] << endl;
 	po->executar();
+	cout << regs->registradores[1] << endl;
+	
 }
