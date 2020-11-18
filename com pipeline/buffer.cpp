@@ -6,6 +6,7 @@
 using namespace std;
 
 class Buffer{
+public:
 	vector<int> buffer;
 };
 
