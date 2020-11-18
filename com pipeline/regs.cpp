@@ -3,17 +3,16 @@
 
 #include <iostream>
 
-class Regs{
-private:
-	//int registradores[32];
-	
+class Regs{	
 public:
 	int registradores[32];
+	
 	Regs(){
 		registradores[0] = 0; //valor padrão do registrador 0
 		registradores[1] = 10;
 		registradores[2] = 5;
 	}
+	
 	int lr(int address, bool loadReg) { //Read Register
 		if(loadReg){
 			std::cout << "LOADED DATA: " << registradores[address] << " FROM ADDRESS: " << address << std::endl;
