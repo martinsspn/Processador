@@ -15,8 +15,10 @@ public:
 		ifstream file;
 		file.open("code.txt");
 		string op;
-		getline(file, op);
-		memoria.push_back(op);
+		while(!file.eof()){
+			getline(file, op);
+			memoria.push_back(op);
+		}
 	}
 
 	string rm(int end, bool readInstMem){ // read memory

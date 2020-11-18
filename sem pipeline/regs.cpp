@@ -16,14 +16,14 @@ public:
 	}
 	int lr(int address, bool loadReg) { //Read Register
 		if(loadReg){
-			std::cout << "LOADED DATA: " << registradores[address] << " FROM ADDRESS: " << address << std::endl;
+			std::cout << "LOADED DATA: " << registradores[address] << " FROM BR ADDRESS: " << address << std::endl;
 			return registradores[address];
 		}
 	}
 
 	void sr(int address, int dado, bool storeReg) { // escreve o valor no registrador selecionado
 		if(storeReg){
-			std::cout << "STORED DATA: " << dado  << " IN ADDRESS: " << address << std::endl;
+			std::cout << "STORED DATA: " << dado  << " IN BR ADDRESS: " << address << std::endl;
 			registradores[address] = dado;
 		}
 	}

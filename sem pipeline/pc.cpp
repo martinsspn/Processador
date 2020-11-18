@@ -32,8 +32,8 @@ class Pc{
 			dataAddress = 15;
 		}
 
-		void decodificar(string command){
-			stringstream operations(command);
+		void decodificar(){
+			stringstream operations(palavra_de_instrucao);
 			string aux1;
 			vector<string> aux2;
 			while(!operations.eof()){
@@ -54,6 +54,9 @@ class Pc{
 					this->opCode = aux2[0];
 					this->opFont1 = stoi(aux2[1]);
 					this->dest = stoi(aux2[2]);
+					this->dataAddress = stoi(aux2[1]);
+					this->dataDest = stoi(aux2[2]);
+
 				}catch(exception& e){
 					cout << "There's something wrong with the instruction";
 				}
@@ -64,6 +67,12 @@ class Pc{
 				}catch(exception& e){
 					cout << "There's something wrong with the instruction" << endl;
 				}
+			}else if(aux2.size() == 1){
+				try{
+					this->opCode = aux2[0];
+				}catch(exception& e){
+					cout << "There's something wrong with the instruction" << endl;	
+				}
 			}else{
 				cout << "Invalid Operation" << endl;
 			}
@@ -72,6 +81,7 @@ class Pc{
 		void getInstruction(string _instrucao){
 			palavra_de_instrucao = _instrucao;
 		}
+
 
 		bool pcWrite(){		
 			if (true){
@@ -93,7 +103,7 @@ class Pc{
 		}
 
 		bool dataRead(){
-			if(opCode == "STORE"){
+			if(opCode == "LOAD"){
 				cout << "dataRead" << endl;
 				return true;
 			}
@@ -103,7 +113,7 @@ class Pc{
 		}
 
 		bool dataWrite(){
-			if(opCode == "LOAD"){
+			if(opCode == "STORE"){
 				cout << "dataWrite" << endl;
 				return true;
 			}
@@ -113,7 +123,7 @@ class Pc{
 		}
 
 		bool brRead(){
-			if (opCode == "ADD" || opCode == "SUB" || opCode == "MULT" || opCode == "DIV" || opCode == "AND" || opCode == "OR" || opCode == "NOT" || opCode == "SHIFT" || opCode == "LOAD" || opCode == "BEQ"){
+			if (opCode == "ADD" || opCode == "SUB" || opCode == "MULT" || opCode == "DIV" || opCode == "AND" || opCode == "OR" || opCode == "NOT" || opCode == "SHIFT" || opCode == "STORE" || opCode == "BEQ"){
 				cout << "brRead" << endl;
 				return true;
 			}
@@ -123,7 +133,7 @@ class Pc{
 		}
 
 		bool brWrite(){
-			if (opCode == "ADD" || opCode == "SUB" || opCode == "MULT" || opCode == "DIV" || opCode == "AND" || opCode == "OR" || opCode == "NOT" || opCode == "SHIFT" || opCode == "STORE"){
+			if (opCode == "ADD" || opCode == "SUB" || opCode == "MULT" || opCode == "DIV" || opCode == "AND" || opCode == "OR" || opCode == "NOT" || opCode == "SHIFT" || opCode == "LOAD"){
 				cout << "brWrite" << endl;
 				return true;
 			}
@@ -143,7 +153,7 @@ class Pc{
 		}
 
 		bool m2Sel(){
-			if (opCode == "STORE"){
+			if (opCode == "LOAD"){
 				cout << "m2Sel" << endl;
 				return true;
 			}
@@ -170,7 +180,7 @@ class Pc{
 
 		int ulaOp(){
 			cout << "opUla: ";
-			if(opCode == "ADD" || opCode == "LOAD" || opCode == "JUMP"){cout << "ADD/LOAD/JUMP" << endl; return 1; }
+			if(opCode == "ADD" || opCode == "STORE" || opCode == "JUMP"){cout << "ADD/STORE/JUMP" << endl; return 1; }
 			else if(opCode == "SUB"){cout << "SUB" << endl; return 2; }
 			else if(opCode == "MULT"){cout << "MULT" << endl; return 3; }
  			else if(opCode == "DIV"){cout << "DIV" << endl; return 4; }
@@ -192,7 +202,7 @@ class Pc{
 
 		int getOpFont2(){
 			cout << "getOpFont2" << endl;
-			if(opCode == "LOAD")
+			if(opCode == "STORE")
 				return 0;
 			else
 				return opFont2;
@@ -211,6 +221,10 @@ class Pc{
 		int getDest(){
 			cout << "getDest" << endl;
 			return dest;
+		}
+
+		string getOpCode(){
+			return opCode;
 		}
 };
 #endif
