@@ -7,7 +7,7 @@ using namespace std;
 
 class Buffer{
 public:
-	vector<int> buffer;
+	int buffer[1000];
 };
 
 #endif
